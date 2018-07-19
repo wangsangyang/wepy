@@ -1,0 +1,349 @@
+<style lang="less">
+.page{ padding: 180rpx 0 0rpx; }
+.page-top{ width: 100%; position: fixed; left: 0; top: 0; background-color: #fff; }
+
+.section-search{ border-top: solid 1rpx #ddd; border-bottom: solid 1rpx #eee; padding:20rpx 30rpx; }
+.section-search .box{ display: flex; align-items: center; height: 60rpx; positon: relative; background-color: #eee; border-radius: 60rpx; }
+.section-search .icon-search{ width: 30rpx; margin: 0 10rpx 0 20rpx; }
+.section-search .searchKey{ flex: 1; font-size: 28rpx; color: #353535; }
+.section-search .placeholder{ color: #bbb; caret-color:red; }
+
+.section-taps{ font-size: 28rpx; white-space: nowrap; border-bottom: solid 1rpx #eee; position: relative; }
+.section-taps .cont-tabs{ }
+.section-taps .cont-tabs .tab{ padding: 20rpx 30rpx; display: inline-block; position: relative; }
+.section-taps .cont-tabs .tab-jinsi{ padding-right: 45rpx; }
+.section-taps .cont-tabs .tab-jinsi .jinsi-list{ display: block; position: absolute; right: 0; top: 0; width: 30rpx; height: 100%; }
+.section-taps .cont-tabs .tab-jinsi .jinsi-list::after{ content: ''; display: block; position: absolute; right: 10rpx; top: 38rpx; width: 0; height: 0; border: solid 10rpx transparent; border-top-color: #999; }
+.section-taps .cont-tabs .tab.active{ color: #ff9900; border-bottom: solid 6rpx #ff9900; }
+.section-taps .cont-tabs .tab.active .jinsi-list::after{ border-top-color: #ff9900; }
+
+.section-taps .tabDropmenu{ display: none; width: 100%; position: fixed; top: 184rpx; bottom: 0; font-size: 26rpx; }
+.section-taps .tabDropmenu.show{ display: block; }
+.section-taps .tabDropmenu .mask{ display: block; position: absolute; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1; }
+.section-taps .tabDropmenu .cont{ position: relative; z-index: 2; min-height: 90rpx; max-height: 600rpx; background-color: #fff; }
+.section-taps .tabDropmenu .cont .header{ position: absolute; left: 0; top: 0; width: 100%; height: 90rpx; padding: 20rpx 30rpx 0 0; box-sizing: border-box; z-index: 1; background-color: #fff; }
+.section-taps .tabDropmenu .cont .header .menu{ display: inline-block; margin-left: 30rpx; background-color:#eee; padding: 5rpx 30rpx; border-radius: 6rpx; }
+.section-taps .tabDropmenu .cont .bodyer{ display: none; max-height: 600rpx; padding: 75rpx 0 0; overflow: auto; }
+.section-taps .tabDropmenu .cont .bodyer.show{ display: block; }
+.section-taps .tabDropmenu .cont .bodyer .btitle{ padding: 10rpx 30rpx 10rpx; background-color: #fff; font-weight: bold; }
+.section-taps .tabDropmenu .cont .bodyer .item{ display: flex; flex-wrap: wrap; padding: 0 30rpx 20rpx; }
+.section-taps .tabDropmenu .cont .bodyer .item text{ width: 50%; padding: 10rpx 10rpx; }
+.section-taps .tabDropmenu .cont .bodyer .item-year text{ width: 100%; }
+
+.section-taps .jinsiDropmenu{ display: none; width: 100%; font-size: 28rpx; position: absolute; top: 85rpx; }
+.section-taps .jinsiDropmenu.show{ display: block; }
+.section-taps .jinsiDropmenu .mask{ position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+.section-taps .jinsiDropmenu .bodyer{ display: flex; flex-wrap: wrap; padding: 20rpx 20rpx 30rpx; position: relative; z-index: 2; background-color: #fff; }
+.section-taps .jinsiDropmenu .bodyer .menu{ width: 33.3333%; padding: 15rpx 20rpx; text-align: center; }
+.section-taps .jinsiDropmenu .bodyer .menu text{ display: block; padding: 8rpx 0; border-radius: 6rpx; border: solid 1rpx #ccc; font-size: 26rpx; }
+.section-taps .jinsiDropmenu .bodyer .menu.active text{ border: solid 1rpx #ff9900; color: #ff9900; }
+.section-taps .jinsiDropmenu .footer{ width: 100%; display: flex; font-size: 32rpx; background-color: #fff; border-top: solid 1rpx #eee; position: relative; z-index: 2; }
+.section-taps .jinsiDropmenu .footer .btn{ width: 50%; height: 90rpx; line-height: 90rpx; text-align: center; background-color: #ff9900; color: #fff; }
+.section-taps .jinsiDropmenu .footer .btn:nth-child(1){ background-color: #fff; color: #ff9900; }
+
+.section-result{  }
+.section-result .list{ display: flex; align-items: center; padding: 20rpx 30rpx; border-bottom: solid 1rpx #eee; }
+.section-result .list .left{ display: flex; align-items: center; justify-content: center; width: 150rpx; height: 150rpx; border: solid 1rpx #f6f6f6; }
+.section-result .list .left image{ width: 90%; }
+.section-result .list .right{ flex: 1; margin-left: 20rpx; font-size: 26rpx; }
+.section-result .list .right .s1{ display: inline-block; margin-left: 50rpx; }
+</style>
+</style>
+
+<template>
+    <view class="page">
+
+      <view class='page-top'>
+          <view class="section-search">
+              <view class="box">
+                  <image class="icon-search" mode='widthFix' src="../../images/icon-search.png"/>
+                  <input class="searchKey" placeholder="请输入商标名称，例如：权大师" placeholder-class="placeholder" confirm-type="search" bindinput='getBrandName'/>
+              </view>
+          </view>
+
+          <view class="section-taps">
+              <scroll-view class="cont-tabs" scroll-x>
+                <view class="tab {{tabActive==index?'active':''}} {{index==1?'tab-jinsi':''}}" @tap="tabSearch({{index}})" wx:for='{{tabs}}' wx:key='{{index}}'>{{item.title}}<text wx:if='{{index==1}}' class='jinsi-list' @tap="showJinsiDropmenu"></text></view>
+              </scroll-view>
+
+              <view class="tabDropmenu {{showTabDropmenu?'show':''}}">
+                  <text class='mask' @tap="hideMenucont"></text>
+                  <view class="cont">
+                    <scroll-view class="header" scroll-x><text class="menu" @tap="showMenucont({{index}})" wx:for="{{tabDropmenu}}" wx:key='{{index}}'>{{item.title}}</text></scroll-view>
+                    <view class="bodyer {{showTabDropmenuBodyer===index?'show':''}}" wx:for="{{tabDropmenu}}" wx:key='{{index}}'>
+                        <view class="item {{item.id==10?'item-year':''}}">
+                            <text wx:for="{{item.bodyer}}" wx:for-item="bodyer" wx:key='{{index}}'>{{bodyer.title}}({{bodyer.num}})</text>
+                        </view>
+                    </view>
+                  </view>
+
+                  <!--  
+                  <view class="cont">
+                      <view class="bodyer {{showTabDropmenuBodyer==index?'show':''}}">
+                          <view class="btitle">有效</view>
+                          <view class="item">
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                          </view>
+                          <view class="btitle">无效</view>
+                          <view class="item">
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                          </view>
+                      </view>
+                  </view>
+                  -->
+
+              </view>
+
+              <view class="jinsiDropmenu {{showJinsiDropmenu?'show':''}}">
+                  <view class='mask' @tap="hideJinsiDropmenu"></view>
+                  <!-- 加字、减字... -->
+                  <view class='bodyer'>
+                      <view class="menu {{item.active?'active':''}}" wx:for="{{jinsiDropmenu}}" wx:key="{{index}}" @tap="jinsiDropmenuHigh({{index}})"><text>{{item.title}}</text></view>
+                  </view>
+                  <view class='footer'>
+                      <text class="btn">重置</text>
+                      <text class="btn">确定</text>
+                  </view>
+              </view>
+
+          </view>
+      </view>
+
+      <view class="section-result">
+          <view class="list">
+              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+      </view>
+
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '商标搜索'
+    };
+
+    components = {};
+
+    data = {
+      tabs: [
+        {title: '精确查询', id: 0},
+        {title: '近似查询', id: 1},
+        {title: '申请人', id: 2},
+        {title: '商品/服务', id: 3},
+        {title: '注册号', id: 4},
+        {title: '代理公司', id: 5},
+        {title: '图形搜索', id: 6}
+      ],
+      tabActive: -1,
+      showTabDropmenu: false,
+      showTabDropmenuBodyer: -1,
+      showJinsiDropmenu: false,
+      tabDropmenu: [
+        {
+          title: '申请人',
+          id: 10,
+          bodyer: [
+            {title: '深圳腾讯科技有限公司', num: 7},
+            {title: '北京梦知网科技有限公司', num: 7}
+          ]
+        },
+        {
+          title: '非规范',
+          id: 11,
+          bodyer: [
+            {title: '非规范啊', num: 7},
+            {title: '非规范啊', num: 7},
+            {title: '非规范啊', num: 7}
+          ]
+        },
+        {
+          title: '规范',
+          id: 12,
+          bodyer: [
+            {title: '规范啊', num: 7},
+            {title: '规范啊', num: 7},
+            {title: '规范啊', num: 7}
+          ]
+        },
+        {
+          title: '申请类别',
+          id: 13,
+          bodyer: [
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7},
+            {title: '02 颜料油漆', num: 7},
+            {title: '01 化学原料', num: 7}
+          ]
+        },
+        {
+          title: '法律状态',
+          id: 14,
+          bodyer: [
+            {title: '出具注册证明', num: 7},
+            {title: '撤销复审中', num: 7}
+          ]
+        },
+        {
+          title: '申请年份',
+          id: 15,
+          bodyer: [
+            {title: '2018', num: 7},
+            {title: '2017', num: 7},
+            {title: '2018', num: 7},
+            {title: '2017', num: 7}
+          ]
+        }
+      ],
+      jinsiDropmenu: [
+        {title: '精确结果', id: 10, active: true},
+        {title: '加字', id: 11, active: true},
+        {title: '减字', id: 12, active: true},
+        {title: '变字', id: 13, active: true},
+        {title: '换序', id: 14, active: true},
+        {title: '部分相同', id: 15, active: true},
+        {title: '拼音', id: 16, active: true},
+        {title: '特殊字符', id: 17, active: true},
+        {title: '形近字', id: 18, active: true}
+      ]
+    }
+
+    methods = {
+      tabSearch (index, e) {
+        console.log(index)
+        console.log(e)
+        this.tabActive = index
+        if (index === 1) {
+          this.showJinsiDropmenu = true
+          this.showTabDropmenu = false
+        } else {
+          this.showJinsiDropmenu = false
+          this.showTabDropmenu = true
+        }
+      },
+      showMenucont (index, e) {
+        console.log(index)
+        this.showTabDropmenuBodyer = index
+      },
+      hideMenucont (e) {
+        this.showTabDropmenu = false
+      },
+      showJinsiDropmenu (id, e) {
+        this.showJinsiDropmenu = !this.showJinsiDropmenu
+      },
+      hideJinsiDropmenu (e) {
+        this.showJinsiDropmenu = false
+      },
+      jinsiDropmenuHigh (index, e) {
+        console.log(index)
+        console.log(e)
+        this.jinsiDropmenu[index].active = !this.jinsiDropmenu[index].active
+      }
+    }
+
+    onReachBottom () {
+      console.log('页面上拉触底事件的处理函数')
+    }
+ }
+
+</script>

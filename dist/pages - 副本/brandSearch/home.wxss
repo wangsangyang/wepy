@@ -1,0 +1,26 @@
+.section-search {
+  border-top: solid 1rpx #ddd;
+  border-bottom: solid 1rpx #ddd;
+  padding: 20rpx 30rpx;
+}
+.section-search .box {
+  display: flex;
+  align-items: center;
+  height: 70rpx;
+  positon: relative;
+  background-color: #eee;
+  border-radius: 60rpx;
+}
+.icon-search {
+  width: 30rpx;
+  positon: absolute;
+}
+.searchKey {
+  flex: 1;
+  font-size: 28rpx;
+  color: #353535;
+}
+.placeholder {
+  color: #bbb;
+  caret-color: red;
+}

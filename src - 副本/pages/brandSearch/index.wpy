@@ -1,0 +1,70 @@
+<style lang="less">
+  .section-search{ border-top: solid 1rpx #ddd; border-bottom: solid 1rpx #eee; padding:20rpx 30rpx; }
+  .section-search .box{ display: flex; align-items: center; height: 60rpx; positon: relative; background-color: #eee; border-radius: 60rpx; }
+  .section-search .icon-search{ width: 30rpx; margin: 0 10rpx 0 20rpx; }
+  .section-search .searchKey{ flex: 1; font-size: 28rpx; color: #353535; }
+  .section-search .placeholder{ color: #bbb; caret-color:red; }
+
+  .section-taps{ font-size: 28rpx; white-space: nowrap; border-bottom: solid 1rpx #eee; position: relative; }
+  .section-taps .cont-tabs{ }
+  .section-taps .cont-tabs .tab{ padding: 20rpx 30rpx; display: inline-block; }
+  .section-taps .cont-tabs .tab.active{ color: #ff9900; border-bottom: solid 2rpx #ff9900; }
+  .section-taps .dropMenu{ font-size: 28rpx; position: absolute; top: 100rpx; padding: 0 30rpx 20rpx 0; }
+  .section-taps .dropMenu .menu{ display: inline-block; margin-left: 30rpx; background-color:#eee; padding: 5rpx 30rpx; border-radius: 6rpx; }
+</style>
+
+<template>
+    <view class="page">
+
+      <view class='page-top'>
+          <view class="section-search">
+              <view class="box">
+                  <image class="icon-search" mode='widthFix' src="../../images/icon-search.png"/>
+                  <input class="searchKey" placeholder="请输入商标名称，例如：权大师" placeholder-class="placeholder" confirm-type="search" bindinput='getBrandName'/>
+              </view>
+          </view>
+
+          <view class="section-taps">
+              <scroll-view class="cont-tabs" scroll-x>
+                <view class="tab active">精确查询</view>
+                <view class="tab">近似查询</view>
+                <view class="tab">申请人</view>
+                <view class="tab">商品/服务</view>
+                <view class="tab">注册号</view>
+                <view class="tab">代理公司</view>
+                <view class="tab">图形搜索</view>
+              </scroll-view>
+              <scroll-view class="dropMenu" scroll-x>
+                  <text class="menu" wx:for="{{dropMenu}}" wx:key='{{index}}' data-index='{{index}}'>{{item.title}}</text>
+              </scroll-view>
+          </view>
+      </view>
+
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+
+  export default class Index extends wepy.page {
+      config = {
+        navigationBarTitleText: '商标搜索',
+      }
+      components = {
+      }
+
+      data = {
+          dropMenu: [
+              {title:'申请人',id: 10},
+              {title:"非规范",id: 11},
+              {title:'规范', id: 12},
+              {title:'申请类别',id: 13},
+              {title:'法律状态',id: 14},
+              {title:'申请年份',id: 15}
+          ],
+      }
+   }
+
+
+</script>

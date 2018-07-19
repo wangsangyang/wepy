@@ -1,0 +1,132 @@
+
+    <view class="page">
+
+      <view class="page-top">
+          <view class="section-search">
+              <view class="box">
+                  <image class="icon-search" mode="widthFix" src="../../images/icon-search.png"/>
+                  <input class="searchKey" placeholder="请输入商标名称，例如：权大师" placeholder-class="placeholder" confirm-type="search" bindinput="getBrandName"/>
+              </view>
+          </view>
+
+          <view class="section-taps">
+              <scroll-view class="cont-tabs" scroll-x>
+                <view class="tab {{tabActive==index?'active':''}} {{index==1?'tab-jinsi':''}}" bindtap="tabSearch"  wx:for="{{tabs}}" wx:key="{{index}}" data-wpytabsearch-a="{{index}}">{{item.title}}<text wx:if="{{index==1}}" class="jinsi-list" bindtap="showJinsiDropmenu"/></view>
+              </scroll-view>
+
+              <view class="tabDropmenu {{showTabDropmenu?'show':''}}">
+                  <text class="mask" bindtap="hideMenucont"/>
+                  <view class="cont">
+                    <scroll-view class="header" scroll-x><text class="menu" bindtap="showMenucont"  wx:for="{{tabDropmenu}}" wx:key="{{index}}" data-wpyshowmenucont-a="{{index}}">{{item.title}}</text></scroll-view>
+                    <view class="bodyer {{showTabDropmenuBodyer===index?'show':''}}" wx:for="{{tabDropmenu}}" wx:key="{{index}}">
+                        <view class="item {{item.id==10?'item-year':''}}">
+                            <text wx:for="{{item.bodyer}}" wx:for-item="bodyer" wx:key="{{index}}">{{bodyer.title}}({{bodyer.num}})</text>
+                        </view>
+                    </view>
+                  </view>
+
+                  <!--  
+                  <view class="cont">
+                      <view class="bodyer {{showTabDropmenuBodyer==index?'show':''}}">
+                          <view class="btitle">有效</view>
+                          <view class="item">
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                          </view>
+                          <view class="btitle">无效</view>
+                          <view class="item">
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                              <text>出具注册证明(7)</text>
+                              <text>撤销复审中(7)</text>
+                          </view>
+                      </view>
+                  </view>
+                  -->
+
+              </view>
+
+              <view class="jinsiDropmenu {{showJinsiDropmenu?'show':''}}">
+                  <view class="mask" bindtap="hideJinsiDropmenu"/>
+                  <!-- 加字、减字... -->
+                  <view class="bodyer">
+                      <view class="menu {{item.active?'active':''}}" wx:for="{{jinsiDropmenu}}" wx:key="{{index}}" bindtap="jinsiDropmenuHigh" data-wpyjinsidropmenuhigh-a="{{index}}"><text>{{item.title}}</text></view>
+                  </view>
+                  <view class="footer">
+                      <text class="btn">重置</text>
+                      <text class="btn">确定</text>
+                  </view>
+              </view>
+
+          </view>
+      </view>
+
+      <view class="section-result">
+          <view class="list">
+              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+          <view class="list">
+              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+              <view class="right">
+                  <view class="row1">北京梦知网科技有限公司</view>
+                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
+                  <view class="row1">申请日期：2018-06-14</view>
+                  <view class="row1">当前状态：已注册</view>
+              </view>
+          </view>
+      </view>
+
+    </view>
