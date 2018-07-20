@@ -1,0 +1,183 @@
+<style lang="less">
+page{ background-color: #eee; color: #333; }
+.page-top{ border-top: solid 1rpx #ddd; padding:50rpx 0; background-color: #fff; }
+.page-top .box{ text-align: center; }
+.page-top .img{ display: inline-block; width: 150rpx; }
+.section-msg{ font-size: 24rpx; color: #999; padding: 20rpx 30rpx 30rpx;}
+</style>
+
+<template>
+    <view class="page">
+
+      <view class='page-top'>
+          <view class="box">
+              <image class="img" mode='widthFix' src="../../images/logo.png"/>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商标名称：</view>
+              <view class="right">
+                  <view class="text">淘宝</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商标申请号：</view>
+              <view class="right">
+                  <view class="text">784546</view>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">商标类别：</view>
+              <view class="right">
+                  <view class="text">16 办公用品</view>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">当前状态：</view>
+              <view class="right">
+                  <view class="text">商标已注册</view>
+                  <image class="icon-arrow" mode='widthFix' src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">申请人：</view>
+              <view class="right">
+                  <view class="text">北京梦知网科技有限公司</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">申请日期：</view>
+              <view class="right">
+                  <view class="text">2019-10-12</view>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">初审公告日期：</view>
+              <view class="right">
+                  <view class="text">2019-10-12</view>
+                  <image class="icon-arrow" mode='widthFix' src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">注册公告日期：</view>
+              <view class="right">
+                  <view class="text">2019-10-12</view>
+                  <image class="icon-arrow" mode='widthFix' src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">专用期限：</view>
+              <view class="right">
+                  <view class="text">2018-10-12-201905-158</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商品/服务项目：</view>
+              <view class="right">
+                  <view class="text">纸、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷</view>
+                  <image class="icon-arrow" mode='widthFix' src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">代理机构信息：</view>
+              <view class="right">
+                  <view class="text">北京梦知网科技有限公司</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商标公告：</view>
+              <view class="right">
+                  <view class="text">3条</view>
+                  <image class="icon-arrow" mode='widthFix' src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+      </view>
+
+      <view class="section-msg">*商标查询信息仅供参考，实际以国家商标局为准。</view>
+
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '商标详情'
+    };
+
+    components = {};
+
+    data = {
+      tabs: [
+        {title: '精确查询', id: 0},
+        {title: '近似查询', id: 1}
+      ],
+      tabActive: -1,
+      showJinsiDropmenu: false,
+      tabDropmenu: [
+        {
+          title: '申请人',
+          id: 10,
+          bodyer: [
+            {title: '深圳腾讯科技有限公司', num: 7},
+            {title: '北京梦知网科技有限公司', num: 7}
+          ]
+        },
+        {
+          title: '非规范',
+          id: 11,
+          bodyer: [
+            {title: '非规范啊', num: 7},
+            {title: '非规范啊', num: 7},
+            {title: '非规范啊', num: 7}
+          ]
+        }
+      ],
+      jinsiDropmenu: [
+        {title: '精确结果', id: 10, active: true},
+        {title: '加字', id: 11, active: true},
+        {title: '减字', id: 12, active: true},
+        {title: '变字', id: 13, active: true},
+        {title: '换序', id: 14, active: true},
+        {title: '部分相同', id: 15, active: true},
+        {title: '拼音', id: 16, active: true},
+        {title: '特殊字符', id: 17, active: true},
+        {title: '形近字', id: 18, active: true}
+      ]
+    }
+
+    methods = {
+      showMenucont (index, e) {
+        console.log(index)
+        this.showTabDropmenuBodyer = index
+      },
+      hideMenucont (e) {
+        this.showTabDropmenu = false
+      },
+      jinsiDropmenuHigh (index, e) {
+        console.log(index)
+        console.log(e)
+        this.jinsiDropmenu[index].active = !this.jinsiDropmenu[index].active
+      }
+    }
+ }
+
+</script>

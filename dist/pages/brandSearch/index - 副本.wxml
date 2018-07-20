@@ -64,7 +64,7 @@
       </view>
 
       <view class="section-result">
-          <view class="list" bindtap="linkBrandDetail">
+          <view class="list">
               <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -73,7 +73,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list" bindtap="linkBrandDetail">
+          <view class="list">
               <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -82,7 +82,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list" bindtap="linkBrandDetail">
+          <view class="list">
               <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -91,7 +91,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list" bindtap="linkBrandDetail">
+          <view class="list">
               <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -100,7 +100,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list" bindtap="linkBrandDetail">
+          <view class="list">
               <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -109,7 +109,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list" bindtap="linkBrandDetail">
+          <view class="list">
               <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>

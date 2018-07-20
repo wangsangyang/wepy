@@ -1,8 +1,8 @@
 <style lang="less">
-.page{ padding: 180rpx 0 0rpx; }
+.page{ padding: 178rpx 0 0rpx; }
 .page-top{ width: 100%; position: fixed; left: 0; top: 0; background-color: #fff; }
 
-.section-search{ border-top: solid 1rpx #ddd; border-bottom: solid 1rpx #eee; padding:20rpx 30rpx; }
+.section-search{ border-bottom: solid 1rpx #eee; padding:20rpx 30rpx; }
 .section-search .box{ display: flex; align-items: center; height: 60rpx; positon: relative; background-color: #eee; border-radius: 60rpx; }
 .section-search .icon-search{ width: 30rpx; margin: 0 10rpx 0 20rpx; }
 .section-search .searchKey{ flex: 1; font-size: 28rpx; color: #353535; }
@@ -22,7 +22,7 @@
 .section-taps .tabDropmenu .mask{ display: block; position: absolute; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1; }
 .section-taps .tabDropmenu .cont{ position: relative; z-index: 2; min-height: 90rpx; max-height: 600rpx; background-color: #fff; }
 .section-taps .tabDropmenu .cont .header{ position: absolute; left: 0; top: 0; width: 100%; height: 90rpx; padding: 20rpx 30rpx 0 0; box-sizing: border-box; z-index: 1; background-color: #fff; }
-.section-taps .tabDropmenu .cont .header .menu{ display: inline-block; margin-left: 30rpx; background-color:#eee; padding: 5rpx 30rpx; border-radius: 6rpx; }
+.section-taps .tabDropmenu .cont .header .menu{ display: inline-block; margin-left: 30rpx; background-color:#eee; padding: 5rpx 40rpx; border-radius: 6rpx; }
 .section-taps .tabDropmenu .cont .bodyer{ display: none; max-height: 600rpx; padding: 75rpx 0 0; overflow: auto; }
 .section-taps .tabDropmenu .cont .bodyer.show{ display: block; }
 .section-taps .tabDropmenu .cont .bodyer .btitle{ padding: 10rpx 30rpx 10rpx; background-color: #fff; font-weight: bold; }
@@ -41,13 +41,12 @@
 .section-taps .jinsiDropmenu .footer .btn{ width: 50%; height: 90rpx; line-height: 90rpx; text-align: center; background-color: #ff9900; color: #fff; }
 .section-taps .jinsiDropmenu .footer .btn:nth-child(1){ background-color: #fff; color: #ff9900; }
 
-.section-result{  }
+.section-result{ background-color: #fff; }
 .section-result .list{ display: flex; align-items: center; padding: 20rpx 30rpx; border-bottom: solid 1rpx #eee; }
 .section-result .list .left{ display: flex; align-items: center; justify-content: center; width: 150rpx; height: 150rpx; border: solid 1rpx #f6f6f6; }
 .section-result .list .left image{ width: 90%; }
 .section-result .list .right{ flex: 1; margin-left: 20rpx; font-size: 26rpx; }
 .section-result .list .right .s1{ display: inline-block; margin-left: 50rpx; }
-</style>
 </style>
 
 <template>
@@ -116,7 +115,7 @@
       </view>
 
       <view class="section-result">
-          <view class="list">
+          <view class="list" @tap="linkBrandDetail">
               <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -125,7 +124,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list">
+          <view class="list" @tap="linkBrandDetail">
               <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -134,7 +133,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list">
+          <view class="list" @tap="linkBrandDetail">
               <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -143,7 +142,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list">
+          <view class="list" @tap="linkBrandDetail">
               <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -152,7 +151,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list">
+          <view class="list" @tap="linkBrandDetail">
               <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -161,16 +160,7 @@
                   <view class="row1">当前状态：已注册</view>
               </view>
           </view>
-          <view class="list">
-              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list">
+          <view class="list" @tap="linkBrandDetail">
               <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
               <view class="right">
                   <view class="row1">北京梦知网科技有限公司</view>
@@ -272,8 +262,7 @@
             {title: '01 化学原料', num: 7},
             {title: '02 颜料油漆', num: 7},
             {title: '01 化学原料', num: 7},
-            {title: '02 颜料油漆', num: 7},
-            {title: '01 化学原料', num: 7}
+            {title: '02 颜料油漆', num: 7}
           ]
         },
         {
@@ -338,6 +327,11 @@
         console.log(index)
         console.log(e)
         this.jinsiDropmenu[index].active = !this.jinsiDropmenu[index].active
+      },
+      linkBrandDetail (index, e) {
+        wepy.navigateTo({
+          url: 'brandDetail'
+        })
       }
     }
 

@@ -1,0 +1,12 @@
+
+    <view class="page">
+
+      <view class="cont">
+            <view class="left">商标名称：</view>
+            <view class="right">
+                <view class="text">淘宝</view>
+            </view>
+      </view>
+
+
+    </view>

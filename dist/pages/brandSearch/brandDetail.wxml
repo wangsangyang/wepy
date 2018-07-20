@@ -1,0 +1,107 @@
+
+    <view class="page">
+
+      <view class="page-top">
+          <view class="box">
+              <image class="img" mode="widthFix" src="../../images/logo.png"/>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商标名称：</view>
+              <view class="right">
+                  <view class="text">淘宝</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商标申请号：</view>
+              <view class="right">
+                  <view class="text">784546</view>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">商标类别：</view>
+              <view class="right">
+                  <view class="text">16 办公用品</view>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">当前状态：</view>
+              <view class="right">
+                  <view class="text">商标已注册</view>
+                  <image class="icon-arrow" mode="widthFix" src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">申请人：</view>
+              <view class="right">
+                  <view class="text">北京梦知网科技有限公司</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">申请日期：</view>
+              <view class="right">
+                  <view class="text">2019-10-12</view>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">初审公告日期：</view>
+              <view class="right">
+                  <view class="text">2019-10-12</view>
+                  <image class="icon-arrow" mode="widthFix" src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">注册公告日期：</view>
+              <view class="right">
+                  <view class="text">2019-10-12</view>
+                  <image class="icon-arrow" mode="widthFix" src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+          <view class="cell">
+              <view class="left">专用期限：</view>
+              <view class="right">
+                  <view class="text">2018-10-12-201905-158</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商品/服务项目：</view>
+              <view class="right">
+                  <view class="text">纸、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷、印刷屏、印刷</view>
+                  <image class="icon-arrow" mode="widthFix" src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">代理机构信息：</view>
+              <view class="right">
+                  <view class="text">北京梦知网科技有限公司</view>
+              </view>
+          </view>
+      </view>
+
+      <view class="view-cell">
+          <view class="cell">
+              <view class="left">商标公告：</view>
+              <view class="right">
+                  <view class="text">3条</view>
+                  <image class="icon-arrow" mode="widthFix" src="../../images/icon-arrow.png"/>
+              </view>
+          </view>
+      </view>
+
+      <view class="section-msg">*商标查询信息仅供参考，实际以国家商标局为准。</view>
+
+    </view>

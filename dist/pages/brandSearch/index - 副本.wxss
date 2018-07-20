@@ -1,5 +1,5 @@
 .page {
-  padding: 178rpx 0 0rpx;
+  padding: 180rpx 0 0rpx;
 }
 .page-top {
   width: 100%;
@@ -9,6 +9,7 @@
   background-color: #fff;
 }
 .section-search {
+  border-top: solid 1rpx #ddd;
   border-bottom: solid 1rpx #eee;
   padding: 20rpx 30rpx;
 }
@@ -204,9 +205,6 @@
 .section-taps .jinsiDropmenu .footer .btn:nth-child(1) {
   background-color: #fff;
   color: #ff9900;
-}
-.section-result {
-  background-color: #fff;
 }
 .section-result .list {
   display: flex;

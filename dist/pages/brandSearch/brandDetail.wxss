@@ -1,0 +1,21 @@
+page {
+  background-color: #eee;
+  color: #333;
+}
+.page-top {
+  border-top: solid 1rpx #ddd;
+  padding: 50rpx 0;
+  background-color: #fff;
+}
+.page-top .box {
+  text-align: center;
+}
+.page-top .img {
+  display: inline-block;
+  width: 150rpx;
+}
+.section-msg {
+  font-size: 24rpx;
+  color: #999;
+  padding: 20rpx 30rpx 30rpx;
+}
