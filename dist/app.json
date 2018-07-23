@@ -1,1 +1,1 @@
-{"pages":["pages/brandSearch/brandDetail","pages/brandSearch/zhuceStatus","pages/brandSearch/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"}}
+{"pages":["pages/brandSearch/index","pages/brandSearch/brandDetail","pages/brandSearch/zhuceStatus"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"}}

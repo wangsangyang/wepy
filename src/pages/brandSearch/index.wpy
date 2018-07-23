@@ -56,7 +56,7 @@
           <view class="section-search">
               <view class="box">
                   <image class="icon-search" mode='widthFix' src="../../images/icon-search.png"/>
-                  <input class="searchKey" placeholder="请输入商标名称，例如：权大师" placeholder-class="placeholder" confirm-type="search" bindinput='getBrandName'/>
+                  <input class="searchKey" placeholder="请输入商标名称，例如：权大师" placeholder-class="placeholder" confirm-type="search" bindinput='getKeyword' bindconfirm='brandSearch'/>
               </view>
           </view>
 
@@ -115,58 +115,13 @@
       </view>
 
       <view class="section-result">
-          <view class="list" @tap="linkBrandDetail">
-              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
+          <view class="list" @tap="linkBrandDetail" wx:for="{{searchList}}" wx:key="{{index}}">
+              <view class="left"><image class="img" mode='widthFix' src="{{tmUrl+item.logoUrl}}"/></view>
               <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" @tap="linkBrandDetail">
-              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" @tap="linkBrandDetail">
-              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" @tap="linkBrandDetail">
-              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" @tap="linkBrandDetail">
-              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" @tap="linkBrandDetail">
-              <view class="left"><image class="img" mode='widthFix' src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
+                  <view class="row1">{{item.applicant}}</view>
+                  <view class="row1">申请号：{{item.dataId}}<text class="s1">类别：{{item.typeCode}}</text></view>
+                  <view class="row1">申请日期：{{item.createDate}}</view>
+                  <view class="row1">当前状态：{{item.processName}}</view>
               </view>
           </view>
       </view>
@@ -177,6 +132,9 @@
 <script>
   import wepy from 'wepy'
 
+  import commonhttp from '../../js/commonhttp'
+  import {loading, navloading} from '../../js/loading'
+
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '商标搜索'
@@ -185,6 +143,10 @@
     components = {};
 
     data = {
+      keyWord: '',
+      page: 0,
+      searchList: [],
+      tmUrl: '',
       tabs: [
         {title: '精确查询', id: 0},
         {title: '近似查询', id: 1},
@@ -194,7 +156,7 @@
         {title: '代理公司', id: 5},
         {title: '图形搜索', id: 6}
       ],
-      tabActive: -1,
+      tabActive: 0,
       showTabDropmenu: false,
       showTabDropmenuBodyer: -1,
       showJinsiDropmenu: false,
@@ -332,7 +294,46 @@
         wepy.navigateTo({
           url: 'brandDetail'
         })
+      },
+      getKeyword (e) {
+        this.keyWord = e.detail.value
+      },
+      brandSearch (e) {
+        loading();
+        let that = this;
+        let common = new commonhttp();
+        common.data.map.q = this.keyWord;
+        common.data.map.page = this.page;
+        common.data.map.field = 'name';
+        common.data.map.pageSize = 50;
+        common.data.map.typeCode = '';
+        common.data.map.style = '';
+
+        let param = common.data;
+        param.map = common.data.map;
+        param.method = 'brandSearch';
+        param.oldVersion = 1;
+        common.ajax(param, function (result) {
+            console.log(result);
+            if (result.statusCode == 200 && result.data.code == 9091) {
+            console.log(result.data.data.items);
+              that.tmUrl = common.tmUrl + 'jpg/';
+              that.searchList = result.data.data.items;
+              that.$apply();
+            } else {
+        
+            }
+        },function(){
+        },function(){
+          loading('close');
+        });
+
+        //wx.request('xxxx').then((d) => console.log(d))
       }
+    }
+
+
+    onLoad () {
     }
 
     onReachBottom () {

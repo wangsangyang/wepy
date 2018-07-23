@@ -1,31 +1,40 @@
 <style lang="less">
-page{ background-color: #eee; color: #333; }
-.page-top{ border-top: solid 1rpx #ddd; padding:50rpx 0; background-color: #fff; }
-.page-top .box{ text-align: center; }
-.page-top .img{ display: inline-block; width: 150rpx; }
+page{ background-color: #fff; padding: 40rpx 60rpx; }
+.list{ display: flex; align-items: stretch; padding: 0 0 50rpx; position: relative; }
+.list::after{ content: ""; display: block; position: absolute; left: 14rpx; top: 0; width: 6rpx; height: 110%; background-color: #ff9900; }
+.list:nth-last-child(1)::after{ display: none; }
+.list .left{ padding-right: 40rpx; }
+.list .left .icon{ display: block; width: 30rpx; height: 30rpx; background-color: #ff9900; border-radius: 50%; }
+.list .right .row1{ font-size: 30rpx; margin-top: -7rpx; }
+.list .right .row2{ font-size: 28rpx; }
 
-.view-cell{ margin-top: 20rpx; background-color: #fff; }
-.view-cell .cell{ display: flex; align-items: center; padding: 20rpx 30rpx; border-top: solid 1rpx #eee; font-size: 28rpx; }
-.view-cell .cell:nth-child(1){ border-bottom: 0; }
-.view-cell .cell .left{}
-.view-cell .cell .right{ flex: 1; display: flex; align-items: center; margin-left: 15rpx; }
-.view-cell .cell .right .text{ flex: 1; }
-.view-cell .cell .right .icon-arrow{ width: 14rpx; margin-left: 20rpx; }
 
 </style>
 
 <template>
     <view class="page">
-
-      <view class="cont">
-            <view class="left">商标名称：</view>
-            <view class="right">
-                <view class="text">淘宝</view>
+            <view class="list">
+                  <view class="left"><text class="icon"></text></view>
+                  <view class="right">
+                      <view class="row1">商标无效</view>
+                      <view class="row2">2010-01-15</view>
+                  </view>
             </view>
-      </view>
-
-
-    </view>
+            <view class="list">
+                  <view class="left"><text class="icon"></text></view>
+                  <view class="right">
+                      <view class="row1">商标注册申请完成</view>
+                      <view class="row2">2010-01-15</view>
+                  </view>
+            </view>
+            <view class="list">
+                  <view class="left"><text class="icon"></text></view>
+                  <view class="right">
+                      <view class="row1">商标注册申请中</view>
+                      <view class="row2">2010-01-15</view>
+                  </view>
+            </view>
+        </view>
 </template>
 
 <script>
@@ -33,28 +42,15 @@ page{ background-color: #eee; color: #333; }
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '商标详情'
+      navigationBarTitleText: '官方流程'
     };
 
     components = {};
 
     data = {
-      tabs: [
-        {title: '精确查询', id: 0},
-        {title: '近似查询', id: 1}
-      ]
     }
 
     methods = {
-      showMenucont (index, e) {
-        console.log(index)
-        this.showTabDropmenuBodyer = index
-      },
-      jinsiDropmenuHigh (index, e) {
-        console.log(index)
-        console.log(e)
-        this.jinsiDropmenu[index].active = !this.jinsiDropmenu[index].active
-      }
     }
  }
 

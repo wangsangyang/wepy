@@ -25,9 +25,9 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/brandSearch/brandDetail',
-      'pages/brandSearch/zhuceStatus',
       'pages/brandSearch/index',
+      'pages/brandSearch/brandDetail',
+      'pages/brandSearch/zhuceStatus'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -39,6 +39,9 @@ export default class extends wepy.app {
 
   globalData = {
     userInfo: null
+  };
+
+  components = {
   };
 
   constructor () {

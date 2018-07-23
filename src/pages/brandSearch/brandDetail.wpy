@@ -37,7 +37,7 @@ page{ background-color: #eee; color: #333; }
                   <view class="text">16 办公用品</view>
               </view>
           </view>
-          <view class="cell">
+          <view class="cell" @tap="linkZhuceStatus">
               <view class="left">当前状态：</view>
               <view class="right">
                   <view class="text">商标已注册</view>
@@ -126,56 +126,15 @@ page{ background-color: #eee; color: #333; }
     components = {};
 
     data = {
-      tabs: [
-        {title: '精确查询', id: 0},
-        {title: '近似查询', id: 1}
-      ],
-      tabActive: -1,
-      showJinsiDropmenu: false,
-      tabDropmenu: [
-        {
-          title: '申请人',
-          id: 10,
-          bodyer: [
-            {title: '深圳腾讯科技有限公司', num: 7},
-            {title: '北京梦知网科技有限公司', num: 7}
-          ]
-        },
-        {
-          title: '非规范',
-          id: 11,
-          bodyer: [
-            {title: '非规范啊', num: 7},
-            {title: '非规范啊', num: 7},
-            {title: '非规范啊', num: 7}
-          ]
-        }
-      ],
-      jinsiDropmenu: [
-        {title: '精确结果', id: 10, active: true},
-        {title: '加字', id: 11, active: true},
-        {title: '减字', id: 12, active: true},
-        {title: '变字', id: 13, active: true},
-        {title: '换序', id: 14, active: true},
-        {title: '部分相同', id: 15, active: true},
-        {title: '拼音', id: 16, active: true},
-        {title: '特殊字符', id: 17, active: true},
-        {title: '形近字', id: 18, active: true}
-      ]
     }
 
     methods = {
-      showMenucont (index, e) {
-        console.log(index)
-        this.showTabDropmenuBodyer = index
-      },
-      hideMenucont (e) {
-        this.showTabDropmenu = false
-      },
-      jinsiDropmenuHigh (index, e) {
+      linkZhuceStatus (index, e) {
         console.log(index)
         console.log(e)
-        this.jinsiDropmenu[index].active = !this.jinsiDropmenu[index].active
+        wepy.navigateTo({
+          url: 'zhuceStatus'
+        })
       }
     }
  }

@@ -5,7 +5,7 @@
           <view class="section-search">
               <view class="box">
                   <image class="icon-search" mode="widthFix" src="../../images/icon-search.png"/>
-                  <input class="searchKey" placeholder="请输入商标名称，例如：权大师" placeholder-class="placeholder" confirm-type="search" bindinput="getBrandName"/>
+                  <input class="searchKey" placeholder="请输入商标名称，例如：权大师" placeholder-class="placeholder" confirm-type="search" bindinput="getKeyword" bindconfirm="brandSearch"/>
               </view>
           </view>
 
@@ -64,58 +64,13 @@
       </view>
 
       <view class="section-result">
-          <view class="list" bindtap="linkBrandDetail">
-              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
+          <view class="list" bindtap="linkBrandDetail" wx:for="{{searchList}}" wx:key="{{index}}">
+              <view class="left"><image class="img" mode="widthFix" src="{{tmUrl+item.logoUrl}}"/></view>
               <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" bindtap="linkBrandDetail">
-              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" bindtap="linkBrandDetail">
-              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" bindtap="linkBrandDetail">
-              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" bindtap="linkBrandDetail">
-              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
-              </view>
-          </view>
-          <view class="list" bindtap="linkBrandDetail">
-              <view class="left"><image class="img" mode="widthFix" src="../../images/logo.png"/></view>
-              <view class="right">
-                  <view class="row1">北京梦知网科技有限公司</view>
-                  <view class="row1">申请号：54162<text class="s1">类别：40</text></view>
-                  <view class="row1">申请日期：2018-06-14</view>
-                  <view class="row1">当前状态：已注册</view>
+                  <view class="row1">{{item.applicant}}</view>
+                  <view class="row1">申请号：{{item.dataId}}<text class="s1">类别：{{item.typeCode}}</text></view>
+                  <view class="row1">申请日期：{{item.createDate}}</view>
+                  <view class="row1">当前状态：{{item.processName}}</view>
               </view>
           </view>
       </view>
